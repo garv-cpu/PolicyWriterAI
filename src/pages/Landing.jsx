@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
+import {useNavigate} from 'react-router-dom'
 const Landing = () => {
+  const navigate = useNavigate()
   return (
     <motion.section
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-20 px-6 text-center"
@@ -14,12 +15,12 @@ const Landing = () => {
         <p className="text-xl text-gray-300 mb-6">
           Instantly generate Privacy Policies, Terms & Conditions, Refund and Cookie Policies customized for your business.
         </p>
-        <a
-          href="/generate"
+        <button
+          onClick={() => navigate('/generate')}
           className="inline-block mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         >
           Generate Your First Policy
-        </a>
+        </button>
       </div>
     </motion.section>
   );
