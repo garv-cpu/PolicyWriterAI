@@ -13,15 +13,31 @@ function App() {
   const [policyType, setPolicyType] = useState("Privacy Policy");
   const [policy, setPolicy] = useState("");
   const [loading, setLoading] = useState(false);
+  const [website, setWebsite] = useState("");
+  const [dataCollected, setDataCollected] = useState("");
+  const [servicesUsed, setServicesUsed] = useState("");
+  const [audience, setAudience] = useState("");
 
   const generatePolicy = async () => {
-    const prompt = `Write a ${policyType} for a ${businessType} called "${businessName}", based in ${country}. Contact email: ${email}`;
+    const prompt = `
+Write a ${policyType} for a business called "${businessName}" (${businessType}), based in ${country}.
+Website: ${website}
+Contact Email: ${email}
+Target Audience: ${audience}
+Data Collected: ${dataCollected}
+Third-party Services Used: ${servicesUsed}
+Make it professional and legally sound.
+`;
+
     setLoading(true);
     setPolicy(""); // Optional: clear old result
     try {
-      const response = await axios.post("http://localhost:4000/api/generate", {
-        prompt,
-      });
+      const response = await axios.post(
+        "https://policywritebackend.onrender.com/api/generate",
+        {
+          prompt,
+        }
+      );
       setPolicy(response.data);
     } catch (error) {
       console.error("Error generating policy:", error);
@@ -56,8 +72,16 @@ function App() {
           setCountry={setCountry}
           policyType={policyType}
           setPolicyType={setPolicyType}
+          website={website}
+          setWebsite={setWebsite}
+          dataCollected={dataCollected}
+          setDataCollected={setDataCollected}
+          servicesUsed={servicesUsed}
+          setServicesUsed={setServicesUsed}
+          audience={audience}
+          setAudience={setAudience}
           generatePolicy={generatePolicy}
-          loading={loading} // ✅ pass it here
+          loading={loading}
         />
 
         <GeneratedOutput policy={policy} policyType={policyType} />
