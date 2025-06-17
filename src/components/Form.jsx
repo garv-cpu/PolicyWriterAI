@@ -23,6 +23,9 @@ const Form = ({
   generatePolicy,
   loading,
 }) => {
+  const inputClass =
+    "w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500";
+
   return (
     <motion.form
       className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-white"
@@ -36,7 +39,7 @@ const Form = ({
           type="text"
           value={businessName}
           onChange={(e) => setBusinessName(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="e.g., PixelCraft Studio"
         />
       </div>
@@ -47,7 +50,7 @@ const Form = ({
           type="text"
           value={businessType}
           onChange={(e) => setBusinessType(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="e.g., SaaS, eCommerce"
         />
       </div>
@@ -58,7 +61,7 @@ const Form = ({
           type="url"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="https://yourcompany.com"
         />
       </div>
@@ -69,7 +72,7 @@ const Form = ({
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="example@domain.com"
         />
       </div>
@@ -80,7 +83,7 @@ const Form = ({
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="India"
         />
       </div>
@@ -91,7 +94,7 @@ const Form = ({
           type="text"
           value={audience}
           onChange={(e) => setAudience(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="e.g., General users, Children, B2B clients"
         />
       </div>
@@ -102,7 +105,7 @@ const Form = ({
           type="text"
           value={dataCollected}
           onChange={(e) => setDataCollected(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="e.g., name, email, location, usage data"
         />
       </div>
@@ -113,7 +116,7 @@ const Form = ({
           type="text"
           value={servicesUsed}
           onChange={(e) => setServicesUsed(e.target.value)}
-          className="input-style"
+          className={inputClass}
           placeholder="e.g., Google Analytics, Stripe, Firebase"
         />
       </div>
@@ -123,7 +126,7 @@ const Form = ({
         <select
           value={policyType}
           onChange={(e) => setPolicyType(e.target.value)}
-          className="input-style"
+          className={inputClass}
         >
           <option>Privacy Policy</option>
           <option>Terms of Service</option>
@@ -140,7 +143,9 @@ const Form = ({
           }}
           disabled={loading}
           className={`mt-4 px-6 py-3 rounded-lg transition font-medium ${
-            loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
           {loading ? "Generating..." : "Generate Policy"}
